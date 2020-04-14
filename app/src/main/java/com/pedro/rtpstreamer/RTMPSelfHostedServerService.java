@@ -16,7 +16,7 @@ public class RTMPSelfHostedServerService extends Service {
     public RTMPSelfHostedServerService() {
     }
 
-    private CommandBridge commandBridge = new CommandBridge();
+    private CommandBridge commandBridge = null;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -30,6 +30,7 @@ public class RTMPSelfHostedServerService extends Service {
 
         DirectoryCopyTask directoryCopyTask = new DirectoryCopyTask(this, DirectoryCopyTask.ASSETS_DIR_PREFIX, externalTargetPath);
         directoryCopyTask.setOnCopyFinished((String toDir) -> {
+            commandBridge = new CommandBridge();
             String bblliveAbsolutePath = toDir + "/" + DirectoryCopyTask.BIN_FILENAME;
             PreparedCommand bbllive = new PreparedCommand().setCommand(bblliveAbsolutePath);
             commandBridge.pushCommand(bbllive);
@@ -48,7 +49,11 @@ public class RTMPSelfHostedServerService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        commandBridge.destroyExec();
+        if (commandBridge != null) {
+            commandBridge.destroyExec();
+            commandBridge.interrupt();
+        }
+
     }
 
     public String getExternalTargetPath() {
