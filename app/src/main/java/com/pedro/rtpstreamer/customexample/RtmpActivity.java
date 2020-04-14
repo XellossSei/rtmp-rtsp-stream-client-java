@@ -243,8 +243,8 @@ public class RtmpActivity extends AppCompatActivity
             //in video encoder maybe color format.
             //If you have more encoder go to VideoEncoder or AudioEncoder class,
             //change encoder and try
-            Toast.makeText(this, "Error preparing stream, This device cant do it",
-                Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "准备串流错误, 设备不支持",
+                    Toast.LENGTH_SHORT).show();
             bStartStop.setText(getResources().getString(R.string.start_button));
           }
         } else {
@@ -267,16 +267,16 @@ public class RtmpActivity extends AppCompatActivity
                   rtmpCamera1.startRecord(
                       folder.getAbsolutePath() + "/" + currentDateAndTime + ".mp4");
                   bRecord.setText(R.string.stop_record);
-                  Toast.makeText(this, "Recording... ", Toast.LENGTH_SHORT).show();
+                  Toast.makeText(this, "录制中... ", Toast.LENGTH_SHORT).show();
                 } else {
-                  Toast.makeText(this, "Error preparing stream, This device cant do it",
+                  Toast.makeText(this, "准备串流错误, 设备不支持",
                       Toast.LENGTH_SHORT).show();
                 }
               } else {
                 rtmpCamera1.startRecord(
                     folder.getAbsolutePath() + "/" + currentDateAndTime + ".mp4");
                 bRecord.setText(R.string.stop_record);
-                Toast.makeText(this, "Recording... ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "录制中... ", Toast.LENGTH_SHORT).show();
               }
             } catch (IOException e) {
               rtmpCamera1.stopRecord();
@@ -287,7 +287,7 @@ public class RtmpActivity extends AppCompatActivity
             rtmpCamera1.stopRecord();
             bRecord.setText(R.string.start_record);
             Toast.makeText(this,
-                "file " + currentDateAndTime + ".mp4 saved in " + folder.getAbsolutePath(),
+                "文件 " + currentDateAndTime + ".mp4 保存在 " + folder.getAbsolutePath(),
                 Toast.LENGTH_SHORT).show();
             currentDateAndTime = "";
           }
@@ -327,7 +327,7 @@ public class RtmpActivity extends AppCompatActivity
     runOnUiThread(new Runnable() {
       @Override
       public void run() {
-        Toast.makeText(RtmpActivity.this, "Connection success", Toast.LENGTH_SHORT).show();
+        Toast.makeText(RtmpActivity.this, "连接成功", Toast.LENGTH_SHORT).show();
       }
     });
   }
@@ -337,7 +337,7 @@ public class RtmpActivity extends AppCompatActivity
     runOnUiThread(new Runnable() {
       @Override
       public void run() {
-        Toast.makeText(RtmpActivity.this, "Connection failed. " + reason, Toast.LENGTH_SHORT)
+        Toast.makeText(RtmpActivity.this, "连接失败. " + reason, Toast.LENGTH_SHORT)
             .show();
         rtmpCamera1.stopStream();
         bStartStop.setText(getResources().getString(R.string.start_button));
@@ -346,7 +346,7 @@ public class RtmpActivity extends AppCompatActivity
           rtmpCamera1.stopRecord();
           bRecord.setText(R.string.start_record);
           Toast.makeText(RtmpActivity.this,
-              "file " + currentDateAndTime + ".mp4 saved in " + folder.getAbsolutePath(),
+              "文件 " + currentDateAndTime + ".mp4 保存在 " + folder.getAbsolutePath(),
               Toast.LENGTH_SHORT).show();
           currentDateAndTime = "";
         }
@@ -369,13 +369,13 @@ public class RtmpActivity extends AppCompatActivity
     runOnUiThread(new Runnable() {
       @Override
       public void run() {
-        Toast.makeText(RtmpActivity.this, "Disconnected", Toast.LENGTH_SHORT).show();
+        Toast.makeText(RtmpActivity.this, "断开链接", Toast.LENGTH_SHORT).show();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2
             && rtmpCamera1.isRecording()) {
           rtmpCamera1.stopRecord();
           bRecord.setText(R.string.start_record);
           Toast.makeText(RtmpActivity.this,
-              "file " + currentDateAndTime + ".mp4 saved in " + folder.getAbsolutePath(),
+              "文件 " + currentDateAndTime + ".mp4 保存在 " + folder.getAbsolutePath(),
               Toast.LENGTH_SHORT).show();
           currentDateAndTime = "";
         }
@@ -388,7 +388,7 @@ public class RtmpActivity extends AppCompatActivity
     runOnUiThread(new Runnable() {
       @Override
       public void run() {
-        Toast.makeText(RtmpActivity.this, "Auth error", Toast.LENGTH_SHORT).show();
+        Toast.makeText(RtmpActivity.this, "认证错误", Toast.LENGTH_SHORT).show();
       }
     });
   }
@@ -398,7 +398,7 @@ public class RtmpActivity extends AppCompatActivity
     runOnUiThread(new Runnable() {
       @Override
       public void run() {
-        Toast.makeText(RtmpActivity.this, "Auth success", Toast.LENGTH_SHORT).show();
+        Toast.makeText(RtmpActivity.this, "认证成功", Toast.LENGTH_SHORT).show();
       }
     });
   }
@@ -423,7 +423,7 @@ public class RtmpActivity extends AppCompatActivity
       rtmpCamera1.stopRecord();
       bRecord.setText(R.string.start_record);
       Toast.makeText(this,
-          "file " + currentDateAndTime + ".mp4 saved in " + folder.getAbsolutePath(),
+          "文件 " + currentDateAndTime + ".mp4 保存在 " + folder.getAbsolutePath(),
           Toast.LENGTH_SHORT).show();
       currentDateAndTime = "";
     }

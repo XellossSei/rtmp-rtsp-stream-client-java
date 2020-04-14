@@ -329,7 +329,7 @@ public class OpenGlRtmpActivity extends AppCompatActivity
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(OpenGlRtmpActivity.this, "Connection success", Toast.LENGTH_SHORT).show();
+                Toast.makeText(OpenGlRtmpActivity.this, "连接成功", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -339,7 +339,7 @@ public class OpenGlRtmpActivity extends AppCompatActivity
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(OpenGlRtmpActivity.this, "Connection failed. " + reason, Toast.LENGTH_SHORT)
+                Toast.makeText(OpenGlRtmpActivity.this, "连接失败 " + reason, Toast.LENGTH_SHORT)
                         .show();
                 rtmpCamera1.stopStream();
                 button.setText(R.string.start_button);
@@ -357,7 +357,7 @@ public class OpenGlRtmpActivity extends AppCompatActivity
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(OpenGlRtmpActivity.this, "Disconnected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(OpenGlRtmpActivity.this, "连接断开", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -367,7 +367,7 @@ public class OpenGlRtmpActivity extends AppCompatActivity
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(OpenGlRtmpActivity.this, "Auth error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(OpenGlRtmpActivity.this, "认证错误", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -377,7 +377,7 @@ public class OpenGlRtmpActivity extends AppCompatActivity
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(OpenGlRtmpActivity.this, "Auth success", Toast.LENGTH_SHORT).show();
+                Toast.makeText(OpenGlRtmpActivity.this, "认证成功", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -455,7 +455,7 @@ public class OpenGlRtmpActivity extends AppCompatActivity
 //                    Toast.makeText(this,
 //                            "file " + currentDateAndTime + ".mp4 保存在 " + folder.getAbsolutePath(),
 //                            Toast.LENGTH_SHORT).show();
-                    new AlertDialog.Builder(OpenGlRtmpActivity.this).setMessage("file " + currentDateAndTime + ".mp4 保存在 " + folder.getAbsolutePath()).show();
+                    new AlertDialog.Builder(OpenGlRtmpActivity.this).setMessage("文件 " + currentDateAndTime + ".mp4 保存在 " + folder.getAbsolutePath()).show();
                     currentDateAndTime = "";
                 }
                 break;
@@ -480,7 +480,7 @@ public class OpenGlRtmpActivity extends AppCompatActivity
             rtmpCamera1.stopRecord();
             bRecord.setText(R.string.start_record);
             Toast.makeText(this,
-                    "file " + currentDateAndTime + ".mp4 saved in " + folder.getAbsolutePath(),
+                    "文件 " + currentDateAndTime + ".mp4 保存在 " + folder.getAbsolutePath(),
                     Toast.LENGTH_SHORT).show();
             currentDateAndTime = "";
         }
