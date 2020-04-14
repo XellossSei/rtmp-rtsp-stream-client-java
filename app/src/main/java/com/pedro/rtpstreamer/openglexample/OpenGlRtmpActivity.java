@@ -391,6 +391,7 @@ public class OpenGlRtmpActivity extends AppCompatActivity
         }
         return "";
     }
+    String rtmpUrl = "";
 
     @Override
     public void onClick(View view) {
@@ -401,7 +402,7 @@ public class OpenGlRtmpActivity extends AppCompatActivity
                             || rtmpCamera1.prepareAudio() && rtmpCamera1.prepareVideo()) {
                         button.setText(R.string.stop_button);
 
-                        String rtmpUrl = null;
+
                         if (TextUtils.isEmpty(etUrl.getText().toString().trim())) {
                             rtmpUrl = "rtmp://" + getLocalIP() + "/live/" + (System.currentTimeMillis() % 100);
                             etUrl.setText(rtmpUrl);
