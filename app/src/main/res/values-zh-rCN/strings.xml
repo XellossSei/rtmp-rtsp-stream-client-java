@@ -38,13 +38,13 @@
   <string name="aqua">Aqua水神</string>
   <string name="posterize">色彩分离</string>
   <!--gl menu-->
-  <string name="enable_disable_fxaa">enable/disable FXAA</string>
+  <string name="enable_disable_fxaa">启用/关闭 快速抗锯齿</string>
   <!--filters-->
-  <string name="no_filter">No filter</string>
-  <string name="analog_tv">Analog TV</string>
+  <string name="no_filter">无滤镜</string>
+  <string name="analog_tv">模拟 TV</string>
   <string name="android_view">Android view</string>
-  <string name="basic_deformation">Basic deformation</string>
-  <string name="beauty">Beauty</string>
+  <string name="basic_deformation">基础变形</string>
+  <string name="beauty">美颜</string>
   <string name="black">Black</string>
   <string name="blur">Blur</string>
   <string name="brightness">Brightness</string>

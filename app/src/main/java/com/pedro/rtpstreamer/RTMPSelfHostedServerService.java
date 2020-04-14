@@ -26,15 +26,16 @@ public class RTMPSelfHostedServerService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        String externalTargetPath = getTargetPath();
 
-        String externalTargetPath = getExternalTargetPath();
         DirectoryCopyTask directoryCopyTask = new DirectoryCopyTask(this, DirectoryCopyTask.ASSETS_DIR_PREFIX, externalTargetPath);
         directoryCopyTask.setOnCopyFinished((String toDir) -> {
-            String bblliveAbsolutePath = toDir + DirectoryCopyTask.BIN_FILENAME;
+            String bblliveAbsolutePath = toDir + "/" + DirectoryCopyTask.BIN_FILENAME;
             PreparedCommand bbllive = new PreparedCommand().setCommand(bblliveAbsolutePath);
             commandBridge.pushCommand(bbllive);
             commandBridge.start();
         });
+        directoryCopyTask.execute();
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -52,6 +53,11 @@ public class RTMPSelfHostedServerService extends Service {
 
     public String getExternalTargetPath() {
         File externalFilesDir = getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
+        return externalFilesDir.getAbsolutePath();
+    }
+
+    public String getTargetPath() {
+        File externalFilesDir = getFilesDir();
         return externalFilesDir.getAbsolutePath();
     }
 }

@@ -8,7 +8,8 @@ android {
   defaultConfig {
     applicationId "com.pedro.rtpstreamer"
     minSdkVersion 21
-    targetSdkVersion 29
+    //必须降低targetSdkVersion < 29，否则执行自定义的bbllive二进制文件会出现权限被拒绝
+    targetSdkVersion 27
     versionCode 179
     versionName "1.7.9"
   }

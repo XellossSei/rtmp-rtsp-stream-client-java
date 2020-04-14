@@ -43,13 +43,12 @@ public class DirectoryCopyTask extends AsyncTask<String, Void, String> {
     public static final String BIN_FILENAME = "bbllive";
 
 
-
     public DirectoryCopyTask(Context context, String fromDir, String toDir) {
         this.context = context;
         this.fromDir = fromDir;
         this.toDir = toDir;
 
-        toCopyFileList.add("/" + BIN_FILENAME);
+        toCopyFileList.add(BIN_FILENAME);
 
     }
 
@@ -81,16 +80,22 @@ public class DirectoryCopyTask extends AsyncTask<String, Void, String> {
         if (toDirFile.exists()) {
             toDirFile.delete();
         }
+        if (!toDirFile.exists()) {
+            toDirFile.mkdirs();
+            Log.d("chdir", "目录不存在，创建目录:" + toDirFile.getParentFile().getAbsolutePath());
+        } else {
+            Log.d("chdir", "目录存在，不创建目录:" + toDirFile.getParentFile().getAbsolutePath());
+        }
         CommandBridge bridge = new CommandBridge();
         InputStream fileFromAssets = null;
         for (int i = 0; i < toCopyFileList.size(); i++) {
             try {
-                Log.d(TAG, "正在复制文件：" + fromDir + toCopyFileList.get(i) + "到" + toDir + toCopyFileList.get(i));
-                fileFromAssets = FileUtil.getFileFromAssets(context, fromDir + toCopyFileList.get(i));
-                FileUtil.copyFileByStream(fileFromAssets, toDir + toCopyFileList.get(i));
+                Log.d(TAG, "正在复制文件：" + fromDir + toCopyFileList.get(i) + "到" + toDir + "/" + toCopyFileList.get(i));
+                fileFromAssets = FileUtil.getFileFromAssets(context, toCopyFileList.get(i));
+                FileUtil.copyFileByStream(fileFromAssets, toDir + File.separator + toCopyFileList.get(i));
                 Log.d(TAG, "文件复制完成");
                 PreparedCommand preparedCommand = new PreparedCommand();
-                preparedCommand.setCommand("chmod").setArgs("755 " + toDir + toCopyFileList.get(i));
+                preparedCommand.setCommand("chmod").setArgs("755 " + toDir + File.separator + toCopyFileList.get(i));
                 bridge.pushCommand(preparedCommand);
                 Log.d(TAG, "文件权限已经设置为755 >>>" + toCopyFileList.get(i));
 
