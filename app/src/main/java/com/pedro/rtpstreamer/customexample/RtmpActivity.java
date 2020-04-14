@@ -4,6 +4,7 @@ import android.hardware.Camera;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,11 +34,13 @@ import com.pedro.encoder.input.video.CameraHelper;
 import com.pedro.encoder.input.video.CameraOpenException;
 import com.pedro.rtplibrary.rtmp.RtmpCamera1;
 import com.pedro.rtpstreamer.R;
+import com.pedro.rtpstreamer.rtmpserver.NetworkUtils;
 
 import net.ossrs.rtmp.ConnectCheckerRtmp;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.SocketException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -205,7 +208,15 @@ public class RtmpActivity extends AppCompatActivity
         return false;
     }
   }
-
+  public String getLocalIP() {
+    try {
+      String localIPAddress = NetworkUtils.getLocalIPAddress();
+      return localIPAddress;
+    } catch (SocketException e) {
+      e.printStackTrace();
+    }
+    return "";
+  }
   @Override
   public void onClick(View v) {
     switch (v.getId()) {
@@ -219,7 +230,13 @@ public class RtmpActivity extends AppCompatActivity
             rtmpCamera1.setAuthorization(user, password);
           }
           if (rtmpCamera1.isRecording() || prepareEncoders()) {
-            rtmpCamera1.startStream(etUrl.getText().toString());
+            String rtmpUrl = null;
+            if (TextUtils.isEmpty(etUrl.getText().toString().trim())) {
+              rtmpUrl = "rtmp://" + getLocalIP() + "/live/" + (System.currentTimeMillis() % 100);
+              etUrl.setText(rtmpUrl);
+            }
+            rtmpCamera1.startStream(rtmpUrl);
+            //rtmpCamera1.startStream(etUrl.getText().toString());
           } else {
             //If you see this all time when you start stream,
             //it is because your encoder device dont support the configuration

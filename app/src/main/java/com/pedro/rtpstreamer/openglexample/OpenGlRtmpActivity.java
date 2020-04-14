@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.pedro.encoder.input.gl.SpriteGestureController;
@@ -401,15 +402,13 @@ public class OpenGlRtmpActivity extends AppCompatActivity
                         button.setText(R.string.stop_button);
 
                         String rtmpUrl = null;
-
                         if (TextUtils.isEmpty(etUrl.getText().toString().trim())) {
                             rtmpUrl = "rtmp://" + getLocalIP() + "/live/" + (System.currentTimeMillis() % 100);
                             etUrl.setText(rtmpUrl);
                         }
                         rtmpCamera1.startStream(rtmpUrl);
                     } else {
-                        Toast.makeText(this, "Error preparing stream, This device cant do it",
-                                Toast.LENGTH_SHORT).show();
+                        new AlertDialog.Builder(OpenGlRtmpActivity.this).setMessage("准备串流错误, 该设备不支持。").show();
                     }
                 } else {
                     button.setText(R.string.start_button);
@@ -436,15 +435,14 @@ public class OpenGlRtmpActivity extends AppCompatActivity
                                 rtmpCamera1.startRecord(
                                         folder.getAbsolutePath() + "/" + currentDateAndTime + ".mp4");
                                 bRecord.setText(R.string.stop_record);
-                                Toast.makeText(this, "Recording... ", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(this, "录制中... ", Toast.LENGTH_SHORT).show();
                             } else {
-                                Toast.makeText(this, "Error preparing stream, This device cant do it",
-                                        Toast.LENGTH_SHORT).show();
+                                new AlertDialog.Builder(OpenGlRtmpActivity.this).setMessage("准备串流错误, 该设备不支持。").show();
                             }
                         } else {
                             rtmpCamera1.startRecord(folder.getAbsolutePath() + "/" + currentDateAndTime + ".mp4");
                             bRecord.setText(R.string.stop_record);
-                            Toast.makeText(this, "Recording... ", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, "录制中... ", Toast.LENGTH_SHORT).show();
                         }
                     } catch (IOException e) {
                         rtmpCamera1.stopRecord();
@@ -454,9 +452,10 @@ public class OpenGlRtmpActivity extends AppCompatActivity
                 } else {
                     rtmpCamera1.stopRecord();
                     bRecord.setText(R.string.start_record);
-                    Toast.makeText(this,
-                            "file " + currentDateAndTime + ".mp4 saved in " + folder.getAbsolutePath(),
-                            Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(this,
+//                            "file " + currentDateAndTime + ".mp4 保存在 " + folder.getAbsolutePath(),
+//                            Toast.LENGTH_SHORT).show();
+                    new AlertDialog.Builder(OpenGlRtmpActivity.this).setMessage("file " + currentDateAndTime + ".mp4 保存在 " + folder.getAbsolutePath()).show();
                     currentDateAndTime = "";
                 }
                 break;

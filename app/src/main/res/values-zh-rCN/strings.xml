@@ -80,26 +80,27 @@
   <string name="text">文本</string>
   <string name="zebra">斑马炫光</string>
   <!--drawer-->
-  <string name="drawer_title">Options</string>
-  <string name="protocols">Protocol</string>
+  <string name="drawer_title">选项</string>
+  <string name="protocols">协议</string>
   <string name="tcp">TCP</string>
   <string name="udp">UDP</string>
-  <string name="video">Video</string>
-  <string name="audio">Audio</string>
-  <string name="resolution">Resolution</string>
-  <string name="video_bitrate">Bitrate (on fly)</string>
-  <string name="audio_bitrate">Bitrate</string>
-  <string name="fps">FPS</string>
-  <string name="orientation">Orientation</string>
-  <string name="hardware_rotation">Hardware rotation</string>
-  <string name="samplerate">SampleRate</string>
-  <string name="channel">Channel</string>
-  <string name="stereo">Stereo</string>
-  <string name="mono">Mono</string>
-  <string name="echo_canceler">Echo canceler</string>
-  <string name="camera">Camera</string>
-  <string name="wowza_auth">Wowza Auth</string>
-  <string name="wowza_user">User</string>
-  <string name="wowza_password">Password</string>
-  <string name="noise_suppressor">Noise suppressor</string>
+  <string name="video">视频</string>
+  <string name="audio">音频</string>
+  <string name="resolution">分辨率</string>
+  <string name="video_bitrate">码率 (运行中)</string>
+  <string name="audio_bitrate">码率</string>
+  <string name="fps">FPS帧率</string>
+  <string name="orientation">镜头方向</string>
+  <string name="hardware_rotation">硬件旋转</string>
+  <string name="samplerate">采样率</string>
+  <string name="channel">声道</string>
+  <string name="stereo">立体声</string>
+  <string name="mono">单声道</string>
+  <string name="echo_canceler">回声消除</string>
+  <string name="noise_suppressor">噪音抑制</string>
+  <string name="camera">相机</string>
+  <string name="wowza_auth">Wowza 认证</string>
+  <string name="wowza_user">用户名</string>
+  <string name="wowza_password">密码</string>
+
 </resources>
