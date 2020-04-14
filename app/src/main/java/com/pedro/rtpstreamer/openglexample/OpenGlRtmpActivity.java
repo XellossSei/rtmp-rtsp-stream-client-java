@@ -126,7 +126,7 @@ public class OpenGlRtmpActivity extends AppCompatActivity
       case R.id.e_d_fxaa:
         rtmpCamera1.getGlInterface().enableAA(!rtmpCamera1.getGlInterface().isAAEnabled());
         Toast.makeText(this,
-            "FXAA " + (rtmpCamera1.getGlInterface().isAAEnabled() ? "enabled" : "disabled"),
+            "FXAA(抗锯齿) " + (rtmpCamera1.getGlInterface().isAAEnabled() ? "启用" : "关闭"),
             Toast.LENGTH_SHORT).show();
         return true;
       //filters. NOTE: You can change filter values on fly without reset the filter.

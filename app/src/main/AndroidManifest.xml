@@ -3,17 +3,12 @@
     package="com.pedro.rtpstreamer">
 
     <uses-permission android:name="android.permission.FLASHLIGHT" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <!--some devices need read permission to create folders or files-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- some devices need read permission to create folders or files -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.CAMERA" />
-
-    <!--needed by background Rtp service to keep service alive-->
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-
-    <!--Optional for play store-->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- needed by background Rtp service to keep service alive -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /> <!-- Optional for play store -->
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
@@ -27,6 +22,11 @@
         android:requestLegacyExternalStorage="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <service
+            android:name=".RTMPSelfHostedServerService"
+            android:enabled="true"
+            android:exported="true"></service>
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -79,10 +79,6 @@
             android:label="@string/texture_mode_rtmp"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".openglexample.SelfServerHostedOpenGLRtmpActivity"
-            android:label="@string/opengl_rtmp"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".openglexample.OpenGlRtmpActivity"
             android:label="@string/opengl_rtmp"
             android:screenOrientation="portrait" />
@@ -99,7 +95,6 @@
             android:label="@string/service_rtp" />
 
         <service android:name=".backgroundexample.RtpService" />
-
         <service
             android:name=".displayexample.DisplayService"
             android:foregroundServiceType="mediaProjection" />
